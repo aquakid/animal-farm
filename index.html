@@ -5,145 +5,271 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Farm by George Orwell</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+        }
+
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-top: 1rem;
+            opacity: 0.9;
         }
 
         nav {
-            margin-top: 10px;
+            background-color: rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 8px;
         }
 
         nav a {
-            color: #ecf0f1;
+            color: var(--white);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2em;
+            margin: 0 1rem;
+            font-size: 1.1em;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
         }
 
         .container {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto 6rem auto;
+            padding: 2rem;
+            display: grid;
+            gap: 2rem;
+        }
+
+        section {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
         }
 
         h2 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #34495e;
+            color: var(--secondary-color);
+            font-size: 2.2em;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
         }
 
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .character-card {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
         }
 
-        ul li {
-            background-color: #ecf0f1;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 1.2em;
+        .character-card h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        .theme-box {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .theme-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box {
+            font-style: italic;
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: transform 0.3s, background-color 0.3s;
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
         }
 
         footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--white);
             text-align: center;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: white;
+            padding: 2rem;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
 
         footer a {
-            color: #ecf0f1;
-            text-decoration: none;
+            color: var(--white);
+            text-decoration: underline;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: #2980b9;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            margin-top: 20px;
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .container { padding: 1rem; }
+            nav a { display: block; margin: 0.5rem 0; }
         }
-
-        .btn:hover {
-            background-color: #3498db;
-        }
-
     </style>
 </head>
 <body>
-
     <header>
-        <h1>Animal Farm</h1>
-        <nav>
-            <a href="#summary">Summary</a>
-            <a href="#characters">Characters</a>
-            <a href="#themes">Themes</a>
-        </nav>
+        <div class="hero-content">
+            <h1>Animal Farm</h1>
+            <div class="subtitle">George Orwell's Timeless Allegory of Power and Corruption</div>
+            <nav>
+                <a href="#summary">Plot Summary</a>
+                <a href="#characters">Characters</a>
+                <a href="#themes">Themes</a>
+                <a href="#quotes">Key Quotes</a>
+            </nav>
+        </div>
     </header>
 
     <div class="container">
         <section id="summary">
-            <h2>Short Summary</h2>
+            <h2>Plot Summary</h2>
             <p>
-                <strong>Animal Farm</strong> is a story about a group of farm animals who overthrow their human owner in the hope of creating an equal and fair society. However, things quickly spiral out of control as the pigs, who are in charge, become just as oppressive as the humans they replaced. It’s a tale about power, corruption, and how idealism can go wrong.
+                <strong>Animal Farm</strong> is a masterful allegory that follows the transformation of Manor Farm into Animal Farm after the animals revolt against their human owner, Mr. Jones. Led by the pigs, the animals establish a new society based on Seven Commandments of Animalism, promising equality and prosperity for all animals.
+            </p>
+            <p>
+                However, as time progresses, the pigs, particularly Napoleon and his propagandist Squealer, gradually modify these commandments and assume more human-like behaviors. Through intimidation, manipulation, and propaganda, Napoleon eliminates his rival Snowball and establishes a totalitarian regime more oppressive than the human leadership it replaced.
+            </p>
+            <p>
+                The story culminates with the pigs becoming indistinguishable from the humans they once fought against, betraying the revolution's original principles and leaving the other animals in conditions worse than before.
             </p>
         </section>
 
         <section id="characters">
-            <h2>Main Characters</h2>
-            <ul>
-                <li><strong>Napoleon:</strong> A pig who becomes the dictator of Animal Farm. He starts out promising equality but becomes power-hungry and tyrannical.</li>
-                <li><strong>Snowball:</strong> Another pig who initially helps lead the rebellion but is chased away by Napoleon. He represents the more idealistic side of leadership.</li>
-                <li><strong>Boxer:</strong> A loyal and hardworking horse who believes that hard work will solve everything. He trusts the pigs blindly.</li>
-                <li><strong>Squealer:</strong> A pig who manipulates the other animals with clever words and propaganda, making them believe whatever Napoleon wants them to.</li>
-                <li><strong>Old Major:</strong> The old pig whose ideas about rebellion inspire the animals to rise up, but he dies before the revolution happens.</li>
-            </ul>
+            <h2>Characters</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <h3>Napoleon</h3>
+                    <p>The main antagonist who transforms from a revolutionary leader into a tyrannical dictator. Based on Joseph Stalin, he uses force and propaganda to maintain power and gradually adopts human behaviors he once condemned.</p>
+                </div>
+                <div class="character-card">
+                    <h3>Snowball</h3>
+                    <p>An intelligent and passionate leader who genuinely wants to improve the animals' lives. Based on Leon Trotsky, he is eventually expelled from the farm by Napoleon's dogs and used as a scapegoat for the farm's problems.</p>
+                </div>
+                <div class="character-card">
+                    <h3>Boxer</h3>
+                    <p>A loyal and incredibly strong horse whose motto "I will work harder" represents the working class's dedication. His tragic end symbolizes the betrayal of the working class by corrupt leadership.</p>
+                </div>
+                <div class="character-card">
+                    <h3>Squealer</h3>
+                    <p>Napoleon's chief propagandist who uses sophisticated arguments and manipulation to justify the pigs' actions and convince the other animals to accept their increasing power.</p>
+                </div>
+                <div class="character-card">
+                    <h3>Benjamin</h3>
+                    <p>The cynical donkey who recognizes the corruption but does nothing to stop it. His character represents the intellectual class who see the problems but remain passive.</p>
+                </div>
+                <div class="character-card">
+                    <h3>Clover</h3>
+                    <p>A maternal and caring mare who notices the changes in the farm but struggles to articulate her concerns. She represents the puzzled working class trying to understand their deteriorating conditions.</p>
+                </div>
+            </div>
         </section>
 
         <section id="themes">
-            <h2>Key Themes</h2>
-            <p>
-                The main themes in Animal Farm are power, corruption, and betrayal. What starts out as a hopeful revolution for equality quickly turns into a dictatorship where the pigs exploit the other animals. The book explores how those in power can manipulate others and how ideals are often twisted by those who seek control.
-            </p>
+            <h2>Themes</h2>
+            <div class="theme-box">
+                <div class="theme-title">Power and Corruption</div>
+                <p>The gradual corruption of the pigs shows how power can transform idealistic leaders into oppressive rulers, mirroring historical political revolutions.</p>
+            </div>
+            <div class="theme-box">
+                <div class="theme-title">Propaganda and Control</div>
+                <p>Through Squealer's manipulative language and the modification of the Seven Commandments, the novel demonstrates how those in power use propaganda to maintain control.</p>
+            </div>
+            <div class="theme-box">
+                <div class="theme-title">Class and Education</div>
+                <p>The pigs' intellectual superiority and the other animals' inability to read highlight how education and knowledge gaps can be exploited to maintain social hierarchies.</p>
+            </div>
         </section>
 
-        <a href="https://en.wikipedia.org/wiki/Animal_Farm" class="btn">Learn More</a>
+        <section id="quotes">
+            <h2>Notable Quotes</h2>
+            <div class="quote-box">
+                "All animals are equal, but some animals are more equal than others."
+            </div>
+            <div class="quote-box">
+                "The creatures outside looked from pig to man, and from man to pig, and from pig to man again; but already it was impossible to say which was which."
+            </div>
+            <div class="quote-box">
+                "Four legs good, two legs better!"
+            </div>
+        </section>
+
+        <a href="https://en.wikipedia.org/wiki/Animal_Farm" class="btn">Explore More About Animal Farm</a>
     </div>
 
     <footer>
-        <p>&copy; 2024 Animal Farm. Designed by Dax Crowley</p>
+        <p>&copy; 2024 Animal Farm Literary Analysis | Designed by Dax Crowley</p>
     </footer>
-
 </body>
 </html>
